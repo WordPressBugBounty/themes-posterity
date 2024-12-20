@@ -1,3 +1,6 @@
+= 3.7 =
+*    Removed footer link.
+
 = 3.6 =
 *    Resolved Issue Deprecated: is_file(): Passing null to parameter #1 ($filename) of type string is deprecated.
 

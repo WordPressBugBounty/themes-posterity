@@ -174,11 +174,7 @@ if(!function_exists('posterity_footer_items')) {
 					?>
 					<div class="credtext">
                     	<?php esc_html_e('By ','posterity');?>
-                        <?php if( is_home() && is_front_page()) {?>
-                        <a class="credlink" href="<?php echo esc_url('https://www.sktthemes.org/');?>" target="_blank"><?php esc_html_e('SKT Themes','posterity'); ?></a>
-                        <?php } else {?>
                         <?php esc_html_e('SKT Themes','posterity'); ?>
-                        <?php } ?>
                     </div>
 					<?php
 					
