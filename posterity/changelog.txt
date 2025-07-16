@@ -1,3 +1,6 @@
+= 3.9 =
+*    Compatibility check with WordPress version 6.8
+
 = 3.8 =
 *    Footer credentials tweaked and Compatibility check with WordPress version 6.7
 
