@@ -1,3 +1,6 @@
+= 3.10 =
+*    Refined footer link
+
 = 3.9 =
 *    Compatibility check with WordPress version 6.8
 
