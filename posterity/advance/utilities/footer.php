@@ -174,7 +174,7 @@ if(!function_exists('posterity_footer_items')) {
 					?>
 					<div class="credtext">
                     	<?php esc_html_e('By ','posterity');?>
-                        <a class="credlink" href="<?php echo esc_url('https://www.sktthemes.org/product-category/free-wordpress-themes/');?>" target="_blank"><?php esc_html_e('SKT Free Themes','posterity'); ?></a>
+                        <a class="credlink" href="<?php echo esc_url('https://www.sktthemes.org/shop/free-creative-agency-wordpress-theme/');?>" rel="nofollow noopener noreferrer" target="_blank"><?php esc_html_e('Posterity','posterity'); ?></a>
                     </div>
 					<?php
 					

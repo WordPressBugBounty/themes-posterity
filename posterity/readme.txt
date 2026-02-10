@@ -2,8 +2,8 @@
 
 Contributors: sonalsinha21
 Requires PHP:  5.6
-Tested up to: 6.8
-Version: 3.10
+Tested up to: 6.9
+Version: 4.0
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/license-list.html#GNUGPLv3
 Tags:e-commerce, portfolio, blog, two-columns, three-columns, left-sidebar, right-sidebar, grid-layout, translation-ready, sticky-post, post-formats, custom-colors, custom-menu, featured-images, footer-widgets, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, rtl-language-support

@@ -1,3 +1,8 @@
+= 4.0 =
+*    Compatible with PHP 8.3
+*    Compatible with WordPress 6.9
+*    Footer credentials tweaked
+
 = 3.10 =
 *    Refined footer link
 
