@@ -1,3 +1,6 @@
+= 4.1 =
+*    Author URL to be rectified.
+
 = 4.0 =
 *    Compatible with PHP 8.3
 *    Compatible with WordPress 6.9
