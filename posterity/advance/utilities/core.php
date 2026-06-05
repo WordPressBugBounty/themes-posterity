@@ -9,6 +9,7 @@
  *
  * @return string CSS rule
  */
+if ( ! function_exists('posterity_make_css_rule') ) { 
 function posterity_make_css_rule($property, $value, $format = false, $special = ''){
 	if ( $value !== '' &&  $value !== 'default' ){
 		//format for some properties
@@ -25,7 +26,7 @@ function posterity_make_css_rule($property, $value, $format = false, $special = 
 		return '';
 	}
 }
-
+}
 
 
 /**
@@ -36,15 +37,19 @@ function posterity_make_css_rule($property, $value, $format = false, $special = 
  *
  * @return string
  */
+if ( ! function_exists('posterity_hex2rgba') ) {  
 function posterity_hex2rgba( $hex, $opacity = 1 ) {
 	list( $r, $g, $b ) = sscanf( $hex, "#%02x%02x%02x" );
 
 	return 'rgba('.$r.','.$g.','.$b.','.$opacity.')';
 }
+}
 
 
+if ( ! function_exists('posterity_is_woocommerce_activated') ) {  
 function posterity_is_woocommerce_activated() {
     return class_exists( 'woocommerce' );
+}
 }
 
 
@@ -54,8 +59,10 @@ function posterity_is_woocommerce_activated() {
  *
  * @return bool
  */
+if ( ! function_exists('posterity_is_home_server') ) { 
 function posterity_is_home_server(){
 	return apply_filters('posterity_is_home_server', false);
+}
 }
 
 
@@ -67,6 +74,7 @@ function posterity_is_home_server(){
  *
  * @return string
  */
+if ( ! function_exists('posterity_is_home_server') ) {  
 function posterity_proper_page_template_name($name){
 	$missing_templates = array(
 		'archives_template.php',
@@ -75,18 +83,21 @@ function posterity_proper_page_template_name($name){
 	//rename old template file name to new if it is missing template
 	return in_array( $name, $missing_templates ) ? str_replace('_', '-', $name) : $name;
 }
+}
 
 /**
  * Helper function for enabling user-css manipulation
  */
+if ( ! function_exists('posterity_enable_user_css_functions') ) {  
 function posterity_enable_user_css_functions(){
 	/** @noinspection PhpIncludeInspection */
 	get_template_part('advance/user', 'css'); 
 }
-
+}
 /**
  * Get user sidebars for usage in meta options
  */
+if ( ! function_exists('posterity_meta_get_user_sidebars') ) {  
 function posterity_meta_get_user_sidebars(){
 	global $posterity_a13;
 
@@ -103,6 +114,7 @@ function posterity_meta_get_user_sidebars(){
 
 	return $sidebars_array;
 }
+}
 
 
 
@@ -113,6 +125,8 @@ function posterity_meta_get_user_sidebars(){
  *
  * @return string   inline CSS
  */
+
+if ( ! function_exists('posterity_bg_fit_helper') ) {   
 function posterity_bg_fit_helper($option){
 	if($option === ''){
 		return '';
@@ -130,6 +144,7 @@ function posterity_bg_fit_helper($option){
 
     return $options[$option];
 }
+}
 
 
 
@@ -141,6 +156,7 @@ function posterity_bg_fit_helper($option){
  * @return string minified CSS
  *
  */
+if ( ! function_exists('posterity_minify_css') ) {  
 function posterity_minify_css($css){
 	// some of the following functions to minimize the css-output are directly taken
 	// from the awesome CSS JS Booster: https://github.com/Schepp/CSS-JS-Booster
@@ -176,6 +192,7 @@ function posterity_minify_css($css){
 	}
 	return $css;
 }
+}
 
 
 
@@ -185,6 +202,8 @@ function posterity_minify_css($css){
  * @return string|false contents of file or false if it not exists
  *
  */
+if ( ! function_exists('posterity_read_contents') ) {  
 function posterity_read_contents($file){
 	return file_exists( $file ) ? implode( file( $file ) ) : false;
+}
 }

@@ -4,47 +4,57 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-} // Exit if accessed directly
+    exit; // Exit if accessed directly
+}
 
-if ( get_option( 'show_on_front' ) === 'posts' ) {
-	get_template_part( 'index' );
+global $posterity_a13;
+
+$show_posts = get_option( 'show_on_front' );
+
+if ( $show_posts === 'posts' ) {
+    // Ensure numeric values inside index.php are cast safely
+    if ( file_exists( get_template_directory() . '/index.php' ) ) {
+        include get_template_directory() . '/index.php';
+    }
 } else {
-	global $posterity_a13;
-	$fp_variant = $posterity_a13->get_option( 'fp_variant' );
 
-	if ( $fp_variant == 'page' ) {
-		//it makes use of real page templates instead of front-page.php
-		$page_template = basename( get_page_template(), '.php' );
-		//below check is incorrect in WordPress 4.8, but might be true in older WP versions
-		//now $page_template will never return "page.php" or "front-page"
-		//however it works proper so lets keep it for few versions
-		if ( $page_template !== 'page.php' && $page_template !== 'front-page' ) {
-			get_template_part( $page_template );
-		} else {
-			get_template_part( 'page' );
-		}
-	}
-	elseif ( $fp_variant == 'blog' ) {
-		global $wp_query;
+    // Safe check if object exists
+    $fp_variant = isset( $posterity_a13 ) ? $posterity_a13->get_option( 'fp_variant' ) : '';
 
-		//fix for front page pagination
-		if ( get_query_var( 'paged' ) ) {
-			$_paged = get_query_var( 'paged' );
-		} elseif ( get_query_var( 'page' ) ) {
-			$_paged = get_query_var( 'page' );
-		} else {
-			$_paged = 1;
-		}
+    if ( $fp_variant === 'page' ) {
+        // Use real page templates instead of front-page.php
+        $page_template_path = get_page_template();
+        $page_template      = $page_template_path ? basename( $page_template_path, '.php' ) : 'page';
 
-		$args = array(
-			'post_type' => 'post',
-			'paged'          => $_paged
-		);
+        if ( $page_template !== 'page' && $page_template !== 'front-page' ) {
+            get_template_part( $page_template );
+        } else {
+            get_template_part( 'page' );
+        }
 
+    } elseif ( $fp_variant === 'blog' ) {
+        global $wp_query;
 
-		$wp_query->query( $args );
+        // Fix for front page pagination (PHP 8.1 safe)
+        $paged_str  = get_query_var( 'paged' );
+        $page_str   = get_query_var( 'page' );
+        $_paged     = max( 1, (int) $paged_str ?: (int) $page_str );
 
-		get_template_part( 'index' );
-	}	 
+        $args = array(
+            'post_type' => 'post',
+            'paged'     => $_paged,
+        );
+
+        // Cast all numeric values inside query args to int
+        $args = array_map( function( $v ) {
+            return is_numeric( $v ) ? (int) $v : $v;
+        }, $args );
+
+        $wp_query->query( $args );
+
+        // Include index.php safely, numeric casts inside posterity_result_count() are required
+        if ( file_exists( get_template_directory() . '/index.php' ) ) {
+            include get_template_directory() . '/index.php';
+        }
+    }
 }

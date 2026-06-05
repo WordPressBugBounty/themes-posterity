@@ -1,4 +1,5 @@
 <?php
+if ( class_exists( 'WP_Customize_Image_Control' ) ) :
 class Posterity_A13_Customize_Image_Control extends WP_Customize_Image_Control {
 	public $type = 'a13-image';
 	public $mime_type = 'image';
@@ -62,4 +63,4 @@ class Posterity_A13_Customize_Image_Control extends WP_Customize_Image_Control {
 		}
 	}
 }
-
+endif;

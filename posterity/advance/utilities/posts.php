@@ -412,7 +412,8 @@ if(!function_exists('posterity_daoon_chat_post')){
      */
     function posterity_daoon_chat_post($content) {
         $chatoutput = "<div class=\"chat\">\n";
-        $split = preg_split("/(\r?\n)+|(<br\s*\/?>\s*)+/", $content);
+		// Fixed PHP 8.1 Error
+        $split = preg_split("/(\r?\n)+|(<br\s*\/?>\s*)+/", (string)$content);
         foreach($split as $haystack) {
             if (strpos($haystack, ":")) {
                 $string = explode(":", trim($haystack), 2);
@@ -584,9 +585,11 @@ if(!function_exists('posterity_display_items_from_query_post_list')) {
  * Remove 'hentry' from post_class()
  * it is added manually in different container
  */
+if(!function_exists( 'posterity_remove_hentry' )){ 
 function posterity_remove_hentry( $class ) {
     $class = array_diff( $class, array( 'hentry' ) );
     return $class;
+}
 }
 add_filter( 'post_class', 'posterity_remove_hentry' );
 

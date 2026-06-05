@@ -1,4 +1,5 @@
 <?php
+if ( ! class_exists( 'Posterity_Skt13Framework_Uni' ) ) {
 class Posterity_Skt13Framework_Uni{
 	function __construct(){
 		add_filter( 'posterity_docs_address', array( $this, 'docs_link' ), 10, 2 );
@@ -8,7 +9,7 @@ class Posterity_Skt13Framework_Uni{
 		return 'https://www.sktthemesdemo.net/documentation/posterity-doc';
 	}
 }
-
+}
 new Posterity_Skt13Framework_Uni();
 
 

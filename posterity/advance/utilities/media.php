@@ -399,6 +399,7 @@ if(!function_exists('posterity_get_movie_link')){
  *
  * @return bool|string HTML of video player or false if can't proceed
  */
+if(!function_exists('posterity_video')) { 
 function posterity_video( $attr, $dont_load_video_library = false ) {
 	global $content_width, $posterity_a13;
 	$post_id = 0;
@@ -534,7 +535,7 @@ function posterity_video( $attr, $dont_load_video_library = false ) {
 
 	return $output;
 }
-
+}
 
 
 /**
@@ -544,9 +545,11 @@ function posterity_video( $attr, $dont_load_video_library = false ) {
  *
  * @return float ration
  */
+if(!function_exists('posterity_get_svg_height_ratio')) {  
 function posterity_get_svg_height_ratio($svg){
     $is_match = preg_match("#viewbox=[\"']\d* \d* ([0-9]*\.?[0-9]+) ([0-9]*\.?[0-9]+)#i", $svg, $values);
     $svg_width = $is_match? $values[1] : 300;
     $svg_height = $is_match? $values[2] : 150;
     return $svg_height/$svg_width * 100;
+}
 }

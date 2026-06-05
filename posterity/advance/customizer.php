@@ -14,6 +14,7 @@ $posterity_customizer_dependencies = array();
  * @param $wp_customize : reference to $wp_customize
  * @return mixed : true if only array were completed, object for custom control
  */
+if (!function_exists('posterity_customizer_controls')) { 
 function posterity_customizer_controls($option, &$args, &$wp_customize){
 	switch( $option['type'] ) {
 		/** @noinspection PhpMissingBreakStatementInspection */
@@ -139,6 +140,7 @@ function posterity_customizer_controls($option, &$args, &$wp_customize){
 
 	return $return;
 }
+}
 
 
 /**
@@ -146,6 +148,7 @@ function posterity_customizer_controls($option, &$args, &$wp_customize){
  *
  * @param WP_Customize_Manager $wp_customize customizer object
  */
+if (!function_exists('posterity_customizer_settings')) { 
 function posterity_customizer_settings( $wp_customize ) {
 	global $posterity_a13, $posterity_customizer_dependencies;
 
@@ -296,6 +299,7 @@ function posterity_customizer_settings( $wp_customize ) {
 		}
 	}
 }
+}
 add_action( 'customize_register', 'posterity_customizer_settings' );
 
 
@@ -307,6 +311,7 @@ add_action( 'customize_register', 'posterity_customizer_settings' );
  *
  * @return bool result
  */
+if (!function_exists('posterity_customizer_compare_dependency')) { 
 function posterity_customizer_compare_dependency($requirement){
 	global $posterity_a13;
 
@@ -326,6 +331,7 @@ function posterity_customizer_compare_dependency($requirement){
     //for all other operators
     return false;
 }
+}
 
 
 
@@ -335,6 +341,7 @@ function posterity_customizer_compare_dependency($requirement){
  *
  * @return bool
  */
+if (!function_exists('posterity_customizer_activate_callback')) { 
 function posterity_customizer_activate_callback($control) {
 	global $posterity_customizer_dependencies;
 
@@ -363,13 +370,14 @@ function posterity_customizer_activate_callback($control) {
 	//let field be visible in any other case
 	return true;
 }
-
-
+}
 
 /**
  * adds JS file to run in customizer for controls
  */
 add_action( 'customize_controls_enqueue_scripts', 'posterity_customizer_controls_js');
+
+if (!function_exists('posterity_customizer_controls_js')) {
 function posterity_customizer_controls_js(){
 	global $posterity_a13, $posterity_customizer_dependencies;
 
@@ -422,6 +430,7 @@ function posterity_customizer_controls_js(){
 	);
 	wp_localize_script( 'posterity-a13-customize-controls', 'PosterityA13FECustomizerControls', apply_filters( 'posterity_customizer_script_params', $skt_params ) );
 }
+}
 
 
 
@@ -429,6 +438,7 @@ function posterity_customizer_controls_js(){
  * adds JS file to run in customizer for preview
  */
 add_action( 'customize_preview_init', 'posterity_customizer_preview_js');
+if (!function_exists('posterity_customizer_preview_js')) {
 function posterity_customizer_preview_js(){
 	wp_enqueue_script('posterity-a13-customize-preview', get_theme_file_uri( 'js/customize-preview.js' ),
 		array( 'customize-preview', 'jquery' ),
@@ -444,6 +454,7 @@ function posterity_customizer_preview_js(){
 
 	wp_enqueue_style( 'posterity-a13-customize-preview', get_theme_file_uri( 'css/customize-preview.css'), false, POSTERITY_THEME_VERSION);
 }
+}
 
 
 
@@ -451,6 +462,7 @@ function posterity_customizer_preview_js(){
  * Prints user.css plus its inline styles in footer as inline styles
  */
 add_action( 'wp_footer', 'posterity_customizer_preview_css', 21);
+if (!function_exists('posterity_customizer_preview_css')) {
 function posterity_customizer_preview_css(){
 	global $wp_styles;
 	//CSS
@@ -464,13 +476,14 @@ function posterity_customizer_preview_css(){
 	//print inline styles
 	$wp_styles->print_inline_style('posterity-a13-user-css');
 }
-
-
+}
 
 /**
  * Prints user.css dependencies in customizer
  */
 add_action( 'wp_enqueue_scripts', 'posterity_customizer_user_css_dependencies', 100);
+
+if (!function_exists('posterity_customizer_user_css_dependencies')) {
 function posterity_customizer_user_css_dependencies(){
 	global $wp_styles;
 	$user_css_deps = $wp_styles->registered['posterity-a13-user-css']->deps;
@@ -478,13 +491,14 @@ function posterity_customizer_user_css_dependencies(){
 		wp_enqueue_style($style);
 	}
 }
-
-
+}
 
 /**
  * prints icons selector
  */
 add_action( 'customize_controls_print_footer_scripts', 'posterity_admin_footer' );
+
+if (!function_exists('posterity_customizer_footer')) {
 function posterity_customizer_footer() {
 	echo '<div id="a13-fa-icons">';
 	/** @noinspection PhpIncludeInspection */
@@ -495,8 +509,9 @@ function posterity_customizer_footer() {
 	}
 	echo '</div>';
 }
+}
 
-
+if (!function_exists('posterity_prepare_partial_css')) {
 function posterity_prepare_partial_css($response, $option, $function) {
 	$partial_name = POSTERITY_OPTIONS_NAME.'['.$option.']';
 	if(isset($response['contents'][$partial_name])){
@@ -505,4 +520,5 @@ function posterity_prepare_partial_css($response, $option, $function) {
 	}
 
 	return $response;
+}
 }

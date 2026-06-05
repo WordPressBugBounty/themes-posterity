@@ -685,8 +685,10 @@ add_action( 'woocommerce_before_checkout_form', 'posterity_wc_checkout_notices_c
  *
  * @return int product_id
  */
+if (!function_exists('posterity_wc_get_product_id')) { 
 function posterity_wc_get_product_id($product){
 	return method_exists( $product, 'get_id' ) ? $product->get_id() : $product->id;
+}
 }
 
 
@@ -696,6 +698,7 @@ function posterity_wc_get_product_id($product){
  *
  * @return string CSS
  */
+if (!function_exists('posterity_woocommerce_css')) {  
 function posterity_woocommerce_css() {
 	global $posterity_a13;
 
@@ -1106,4 +1109,5 @@ function posterity_woocommerce_css() {
 
 
 	return $css;
+}
 }

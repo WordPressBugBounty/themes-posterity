@@ -1,4 +1,5 @@
 <?php
+if ( ! function_exists( 'posterity_setup_theme_options' ) ) {
 function posterity_setup_theme_options() {
 	global $posterity_a13;
 
@@ -3745,5 +3746,5 @@ function posterity_setup_theme_options() {
 
 	do_action( 'posterity_additional_theme_options' );
 }
-
+}
 posterity_setup_theme_options();

@@ -1,6 +1,11 @@
 <?php
 /* get CSS of all theme settings
  */
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+if ( ! function_exists( 'posterity_get_user_css' ) ) {
 function posterity_get_user_css($with_custom_css = true) {
 	global $posterity_a13;
 
@@ -1596,9 +1601,10 @@ only screen and (min-resolution: 120dpi) {
 ";
 
 	return posterity_minify_css( $user_css );
-}
+}}
 /* get custom CSS setting value
  */
+if ( ! function_exists( 'posterity_user_custom_css' ) ) { 
 function posterity_user_custom_css(){
 	global $posterity_a13;
 
@@ -1611,5 +1617,6 @@ function posterity_user_custom_css(){
 " . stripslashes( $custom_CSS );
 
 	return $css;
+}
 }
 posterity_get_user_css();

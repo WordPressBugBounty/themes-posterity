@@ -27,8 +27,10 @@ $header_classes .= ' '.$posterity_a13->get_option( 'header_horizontal_sticky' );
 
 //hide until it is scrolled to
 $show_header_at = $posterity_a13->posterity_get_meta('_horizontal_header_show_header_at' );
-if(strlen($show_header_at) && $show_header_at > 0){
-	$header_classes .= ' hide-until-scrolled-to';
+
+// Fixed PHP 8.1 Error
+if (!empty($show_header_at) && $show_header_at > 0) {
+    $header_classes .= ' hide-until-scrolled-to';
 }
 
 ?>

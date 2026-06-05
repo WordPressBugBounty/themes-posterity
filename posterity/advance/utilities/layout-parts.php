@@ -29,7 +29,7 @@ if(!function_exists('posterity_page_preloader')){
     }
 }
 
-
+if(!function_exists('posterity_page_preloader_css')){
 function posterity_page_preloader_css() {
 	global $posterity_a13;
 
@@ -64,9 +64,12 @@ function posterity_page_preloader_css() {
 
 	return $css;
 }
+}
 
+if (!function_exists('posterity_page_preloader_partial_css')) {
 function posterity_page_preloader_partial_css($response) {
 	return posterity_prepare_partial_css($response, 'preloader_bg_image', 'posterity_page_preloader_css');
+}
 }
 add_filter( 'customize_render_partials_response', 'posterity_page_preloader_partial_css' );
 
@@ -357,7 +360,7 @@ if(!function_exists('posterity_page_background')){
 }
 
 
-
+if (!function_exists('posterity_page_background_css')) {
 function posterity_page_background_css() {
 	global $posterity_a13;
 
@@ -430,9 +433,12 @@ if ( $posterity_a13->get_option( 'shop_custom_background' ) === 'on' ) {
 
 	return $css;
 }
+}
 
+if (!function_exists('posterity_page_background_partial_css')) {
 function posterity_page_background_partial_css($response) {
 	return posterity_prepare_partial_css($response, 'appearance_body_image', 'posterity_page_background_css');
+}
 }
 add_filter( 'customize_render_partials_response', 'posterity_page_background_partial_css' );
 

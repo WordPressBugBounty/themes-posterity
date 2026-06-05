@@ -14,9 +14,11 @@ if(!function_exists('posterity_admin_js_parameters')){
         $params['nava'] = array();
         $args = array( 'numberposts' => PHP_INT_MAX, "post_type" => 'nava');
         $posts = get_posts($args);
+		if( !empty($posts) && is_array($posts) ){
         foreach( $posts as $post ){
             $params['nava'][$post->ID] = $post->post_title;
         }
+		}
 
         $params['ajaxurl'] = admin_url( 'admin-ajax.php' );
         $params['input_prefix'] = POSTERITY_INPUT_PREFIX;
@@ -160,23 +162,20 @@ function posterity_is_admin_notice_active($id){
 /**
  * Checks for proper names of templates since 1.5.2 as some were renamed. It works while editing page
  */
-function posterity_check_for_proper_page_template_name($dropdown_args){
+function posterity_check_for_proper_page_template_name( $dropdown_args ) {
     global $post;
-
-    //make sure we use up to date template name
-    $post->page_template = posterity_proper_page_template_name($post->page_template);
-
-    //don't change anything for this filter
+    // make sure we use up to date template name
+    if ( is_object( $post ) && function_exists( 'posterity_proper_page_template_name' ) ) {
+        $post->page_template = posterity_proper_page_template_name( $post->page_template );
+    }
+    // don't change anything for this filter
     return $dropdown_args;
 }
-//dirty to add it here, but it is best that WordPress give us ATM
 add_filter( 'page_attributes_dropdown_pages_args', 'posterity_check_for_proper_page_template_name' );
-
-add_action( 'wp_ajax_posterity_disable_ajax_notice', 'posterity_disable_ajax_notice' );
-
 /**
  * Mark notice to be displayed later or disabled
  */
+add_action( 'wp_ajax_posterity_disable_ajax_notice', 'posterity_disable_ajax_notice' );
 function posterity_disable_ajax_notice() {
 	if ( ! wp_verify_nonce( $_POST['nonce'], 'ajax_security' ) ) {
         die ( 'Caught!');

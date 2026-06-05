@@ -5,6 +5,7 @@
  * @since  1.0.0
  * @access public
  */
+if ( class_exists( 'WP_Customize_Section' ) ) :  
 class Posterity_A13_Customize_Section_Pro extends WP_Customize_Section {
 
 	/**
@@ -64,3 +65,4 @@ class Posterity_A13_Customize_Section_Pro extends WP_Customize_Section {
 		</li>
 	<?php }
 }
+endif;

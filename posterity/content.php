@@ -26,12 +26,15 @@ global $posterity_a13, $post;
         $add_read_more = $posterity_a13->get_option( 'blog_read_more', 'on' ) === 'on';
 
         if($posterity_a13->get_option( 'blog_excerpt_type') == 'auto'){
-            if(strpos($post->post_content, '<!--more-->')){
-                the_content( $add_read_more ? esc_html__( 'Read more', 'posterity' ) : '' );
-            }
-            else{
-                the_excerpt();
-            }
+		// Fixed PHP 8.1 Error 
+		global $post;
+		
+		if (!empty($post) && !empty($post->post_content) && strpos($post->post_content, '<!--more-->') !== false) {
+			the_content( $add_read_more ? esc_html__( 'Read more', 'posterity' ) : '' );
+		}
+		else{
+			the_excerpt();
+		}
         }
         //manual post cutting
         else{

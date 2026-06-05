@@ -1,4 +1,5 @@
 <?php
+if ( ! class_exists( 'Posterity_Main_Framework' ) ) {
 class Posterity_Main_Framework{
 	function __construct(){
 		//get Posterity Universal first so it could fire its actions first
@@ -150,6 +151,7 @@ class Posterity_Main_Framework{
 		echo '<p><a class="button button-primary" href="'.esc_url( admin_url( 'themes.php?page=posterityinfopage&amp;subpage=info' ) ).'">'.esc_html__( 'Complete Installation', 'posterity').'</a></p>';
 		echo '</div>';
 	}
+}
 }
 
 //run

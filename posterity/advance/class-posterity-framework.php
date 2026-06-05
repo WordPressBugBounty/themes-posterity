@@ -4,6 +4,7 @@
  * Framework class, to keep all settings encapsulated
  * Access to this singleton is via global $posterity_a13
  */
+if ( ! class_exists( 'Posterity_Framework' ) ) { 
 class Posterity_Framework
 {
 
@@ -163,39 +164,39 @@ class Posterity_Framework
 
         // UTILITIES
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/core');
+		require_once get_template_directory() . '/advance/utilities/core.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/core_fe');
+		require_once get_template_directory() . '/advance/utilities/core_fe.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/menu');
+		require_once get_template_directory() . '/advance/utilities/menu.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/media');
+		require_once get_template_directory() . '/advance/utilities/media.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/posts');
+		require_once get_template_directory() . '/advance/utilities/posts.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/layout', 'parts'); 
+		require_once get_template_directory() . '/advance/utilities/layout-parts.php'; 
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/header');
+		require_once get_template_directory() . '/advance/utilities/header.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/footer');
+		require_once get_template_directory() . '/advance/utilities/footer.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/password');
+		require_once get_template_directory() . '/advance/utilities/password.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/feature');
+		require_once get_template_directory() . '/advance/utilities/feature.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/cpt');
+		require_once get_template_directory() . '/advance/utilities/cpt.php';
         /** @noinspection PhpIncludeInspection */
-		get_template_part('advance/utilities/deprecated');
+		require_once get_template_directory() . '/advance/utilities/deprecated.php';
 
         //WPML
         if(defined( 'ICL_SITEPRESS_VERSION')){
             /** @noinspection PhpIncludeInspection */
-			get_template_part('advance/utilities/wpml');
+			require_once get_template_directory() . '/advance/utilities/wpml.php';
         }
         //WOOCOMMERCE
         if(posterity_is_woocommerce_activated()){
             /** @noinspection PhpIncludeInspection */
-			get_template_part('advance/utilities/woocommerce');
+			require_once get_template_directory() . '/advance/utilities/woocommerce.php';
         }
 
         $this->prepare_theme_vars();
@@ -246,15 +247,21 @@ class Posterity_Framework
             }
         }
 
-        //collect default values
-        if(isset($section['fields']) && is_array($section['fields']) && ! empty( $section['fields'] )){
-            foreach($section['fields'] as $params ){
-                //if we don't have such default yet, use default defined in framework
-                if( !array_key_exists($params['id'], $this->theme_options_defaults) ){
-                    $this->theme_options_defaults[$params['id']] = isset($params['default'])? $params['default'] : '';
-                }
-            }
-        }
+		//collect default values
+		if(isset($section['fields']) && is_array($section['fields']) && !empty($section['fields'])){
+		
+			if(!isset($this->theme_options_defaults)){
+				$this->theme_options_defaults = array();
+			}
+		
+			foreach($section['fields'] as $params ){
+		
+				if(!array_key_exists($params['id'], $this->theme_options_defaults)){
+					$this->theme_options_defaults[$params['id']] = isset($params['default']) ? $params['default'] : '';
+				}
+		
+			}
+		}
 
         /**
          * @since 2.3.0
@@ -985,6 +992,7 @@ class Posterity_Framework
 
         return $ready;
     }
+}
 }
 
 add_filter( 'doing_it_wrong_trigger_error', function( $status, $function_name ) {

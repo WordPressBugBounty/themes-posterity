@@ -3,6 +3,7 @@
  * Font Customizer Control
  *
  */
+if ( class_exists( 'WP_Customize_Control' ) ) : 
 class Posterity_A13_Customize_Font_Control extends WP_Customize_Control {
 
 	/**
@@ -131,3 +132,4 @@ class Posterity_A13_Customize_Font_Control extends WP_Customize_Control {
 		<?php
 	}
 }
+endif;

@@ -4,6 +4,7 @@
  *
  * @return string   URL
  */
+if (!function_exists('posterity_current_url')) { 
 function posterity_current_url() {
 	global $wp;
 
@@ -16,6 +17,7 @@ function posterity_current_url() {
 
 	return $current_url;
 }
+}
 
 
 
@@ -26,6 +28,7 @@ function posterity_current_url() {
  *
  * @return bool|string
  */
+if (!function_exists('posterity_has_active_sidebar')) { 
 function posterity_has_active_sidebar() {
 	global $posterity_a13;
 	$test              = '';
@@ -63,6 +66,7 @@ function posterity_has_active_sidebar() {
 		return false;
 	}
 }
+}
 
 
 
@@ -71,6 +75,7 @@ function posterity_has_active_sidebar() {
  *
  * @return array
  */
+if (!function_exists('posterity_what_page_type_is_it')) {  
 function posterity_what_page_type_is_it() {
 	global $posterity_a13;
 	static $types;
@@ -99,7 +104,7 @@ function posterity_what_page_type_is_it() {
 
 	return $types;
 }
-
+}
 
 
 /**
@@ -107,12 +112,13 @@ function posterity_what_page_type_is_it() {
  *
  * @return bool
  */
+if (!function_exists('posterity_is_no_property_page')) {   
 function posterity_is_no_property_page() {
 	global $post;
 
 	return ! is_object( $post );
 }
-
+}
 
 
 add_filter( 'body_class', 'posterity_body_classes' );
@@ -123,6 +129,7 @@ add_filter( 'body_class', 'posterity_body_classes' );
  *
  * @return array
  */
+if (!function_exists('posterity_body_classes')) {    
 function posterity_body_classes( $classes ) {
 	global $posterity_a13;
 
@@ -225,7 +232,7 @@ function posterity_body_classes( $classes ) {
 
 	return $classes;
 }
-
+}
 
 
 /**
@@ -237,6 +244,7 @@ function posterity_body_classes( $classes ) {
  *
  * @return string   classes of #mid
  */
+if (!function_exists('posterity_get_mid_classes')) { 
 function posterity_get_mid_classes() {
 	global $posterity_a13;
 
@@ -441,7 +449,7 @@ function posterity_get_mid_classes() {
 
 	return $mid_classes;
 }
-
+}
 
 
 add_action('pre_get_posts','posterity_frontpage');
@@ -450,6 +458,7 @@ add_action('pre_get_posts','posterity_frontpage');
  *
  * @param WP_Query $query
  */
+if (!function_exists('posterity_frontpage')) { 
 function posterity_frontpage( $query ) {
 	global $posterity_a13;
 
@@ -464,36 +473,37 @@ function posterity_frontpage( $query ) {
 	}
 
 }
-
+}
 
 
 /**
  * Solves issue with badly named templates in previous theme versions.
  * It works while entering page on front-end
  */
+if (!function_exists('posterity_check_for_renamed_templates')) { 
 function posterity_check_for_renamed_templates(){
-	//check what is current template name
-	$current_name = get_post_meta( get_the_ID(), '_wp_page_template', true );
 
-	//verify if it is up to date
-	$checked_name = posterity_proper_page_template_name($current_name);
-	if( $checked_name !== $current_name  ){
-		//update post with new template file name
-		update_post_meta(get_the_ID(), '_wp_page_template', $checked_name);
+    $current_name = get_post_meta(get_the_ID(), '_wp_page_template', true);
 
-		//only name without .php suffix
-		$template_name = basename($checked_name, '.php');
+    if(function_exists('posterity_proper_page_template_name')){
+        $checked_name = posterity_proper_page_template_name($current_name);
+    } else {
+        return true; // skip check if function missing
+    }
 
-		//run new template
-		get_template_part( $template_name );
+    if($checked_name !== $current_name){
+        update_post_meta(get_the_ID(), '_wp_page_template', $checked_name);
 
-		//inform that there was redirect
-		return false;
-	}
+        $template_name = basename($checked_name, '.php');
 
-	return true;
+        get_template_part($template_name);
+
+        return false;
+    }
+
+    return true;
 }
-
+}
 
 
 /**
@@ -505,6 +515,7 @@ function posterity_check_for_renamed_templates(){
  * @return array
  *
  */
+if (!function_exists('posterity_faster_google_fonts')) {  
 function posterity_faster_google_fonts($urls, $relation_type){
 	if('preconnect' === $relation_type){
 		global $posterity_a13;
@@ -532,6 +543,7 @@ function posterity_faster_google_fonts($urls, $relation_type){
 
 	return $urls;
 }
+}
 add_filter( 'wp_resource_hints', 'posterity_faster_google_fonts', 10, 2 );
 
 
@@ -544,6 +556,8 @@ add_filter( 'wp_resource_hints', 'posterity_faster_google_fonts', 10, 2 );
  * @return array|string web-fonts used
  *
  */
+ 
+if (!function_exists('posterity_get_theme_web_fonts')) {   
 function posterity_get_theme_web_fonts($as_array = false){
 	global $posterity_a13;
 
@@ -618,4 +632,5 @@ function posterity_get_theme_web_fonts($as_array = false){
 	}
 
 	return $fonts;
+}
 }

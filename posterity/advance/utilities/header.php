@@ -343,7 +343,7 @@ if ( ! function_exists( 'posterity_theme_header' ) ) {
 	}
 }
 
-
+if (!function_exists('posterity_header_button')) {
 function posterity_header_button() {
 	global $posterity_a13;
 
@@ -355,7 +355,9 @@ function posterity_header_button() {
 	echo '<a class="tools_button'.esc_attr($button_on_mobile).'" href="'.esc_url($button_link).'" '.
 	     ( $button_new_tab ? ' target="_blank"' : '' ).'>'.esc_html( $button ).'</a>';
 }
+}
 
+if (!function_exists('posterity_header_button_css')) {
 function posterity_header_button_css() {
 	global $posterity_a13;
 
@@ -382,8 +384,11 @@ function posterity_header_button_css() {
 
 	return $css;
 }
+}
 
+if (!function_exists('posterity_header_button_partial_css')) {
 function posterity_header_button_partial_css($response) {
 	return posterity_prepare_partial_css($response, 'header_button', 'posterity_header_button_css');
+}
 }
 add_filter( 'customize_render_partials_response', 'posterity_header_button_partial_css' );

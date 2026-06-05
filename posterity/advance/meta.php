@@ -1,4 +1,5 @@
 <?php
+if ( ! function_exists( 'posterity_meta_boxes_post' ) ) {
 function posterity_meta_boxes_post() {
 	$meta = array(
 		/*
@@ -279,9 +280,10 @@ function posterity_meta_boxes_post() {
 
 	return apply_filters( 'posterity_meta_boxes_post', $meta );
 }
+}
 
 
-
+if ( ! function_exists( 'posterity_meta_boxes_page' ) ) {
 function posterity_meta_boxes_page() {
 	$sidebars = array_merge(
 		array(
@@ -695,13 +697,16 @@ function posterity_meta_boxes_page() {
 
 	return apply_filters( 'posterity_meta_boxes_page', $meta );
 }
+}
 
+if ( ! function_exists( 'posterity_meta_boxes_images_manager' ) ) {
 function posterity_meta_boxes_images_manager() {
 	return apply_filters( 'posterity_meta_boxes_images_manager', array('images_manager' => array()) );
 }
+}
 
 
-
+if ( ! function_exists( 'posterity_get_socials_array' ) ) {
 function posterity_get_socials_array() {
 	global $posterity_a13;
 
@@ -712,9 +717,10 @@ function posterity_get_socials_array() {
 	}
 	return $tmp_arr;
 }
+}
 
 
-
+if ( ! function_exists( 'posterity_meta_boxes_people' ) ) {
 function posterity_meta_boxes_people() {
 	$meta =
 		array(
@@ -777,4 +783,5 @@ function posterity_meta_boxes_people() {
 		);
 
 	return $meta;
+}
 }

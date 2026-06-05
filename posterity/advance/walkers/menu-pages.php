@@ -6,6 +6,7 @@
  *
  * @since 2.3.3
  */
+if (!class_exists('POSTERITY_pages_menu_walker')) { 
 class POSTERITY_pages_menu_walker extends Walker_Page {
 
 	/**
@@ -162,5 +163,6 @@ class POSTERITY_pages_menu_walker extends Walker_Page {
 			$output .= " " . mysql2date( $date_format, $time );
 		}
 	}
+}
 }
 

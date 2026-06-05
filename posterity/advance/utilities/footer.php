@@ -56,7 +56,7 @@ if(!function_exists('posterity_theme_footer')){
 	}
 }
 
-
+if(!function_exists('posterity_footer_css')){
 function posterity_footer_css() {
 	global $posterity_a13;
 
@@ -103,9 +103,12 @@ function posterity_footer_css() {
 
 	return $css;
 }
+}
 
+if(!function_exists('posterity_footer_partial_css')) {
 function posterity_footer_partial_css($response) {
 	return posterity_prepare_partial_css($response, 'footer_switch', 'posterity_footer_css');
+}
 }
 add_filter( 'customize_render_partials_response', 'posterity_footer_partial_css' );
 
@@ -186,7 +189,7 @@ if(!function_exists('posterity_footer_items')) {
 	}
 }
 
-
+if(!function_exists('footer_socials')) {
 function footer_socials(){
 	global $posterity_a13;
 	if( $posterity_a13->get_option( 'footer_socials' ) === 'on' ){
@@ -195,6 +198,7 @@ function footer_socials(){
 		echo posterity_social_icons($posterity_a13->get_option( 'footer_socials_color' ), $posterity_a13->get_option( 'footer_socials_color_hover' )); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</div>';
 	}
+}
 }
 
 

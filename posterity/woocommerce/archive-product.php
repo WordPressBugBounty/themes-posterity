@@ -10,29 +10,35 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see 	    https://docs.woocommerce.com/document/template-structure/
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     3.4.0
+ * @see https://woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 8.6.0
  */
 
 /* Theme changes: added a13-ajax-get check to serve limited content for lazy load - it makes it much faster! */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
-//if AJAX call load only product and pagination
-if(isset( $_REQUEST['a13-ajax-get'])) {
-	while ( have_posts() ) : the_post();
-		wc_get_template_part( 'content', 'product' );
-	endwhile;
+// Check WooCommerce is active and functions exist
+if ( function_exists( 'wc_get_template' ) ) {
 
-	//and pagination
-	do_action( 'woocommerce_after_shop_loop' );
-}
-//load default WooCommerce template, as we don't want to overwrite it
-else {
-	wc_get_template( 'archive-product.php', array(), 'do-not-look-in-theme' );
-}
+    // If AJAX call, load only products and pagination
+    if ( isset( $_REQUEST['a13-ajax-get'] ) ) {
+        while ( have_posts() ) : the_post();
+            wc_get_template_part( 'content', 'product' );
+        endwhile;
 
+        // And pagination
+        do_action( 'woocommerce_after_shop_loop' );
+
+    } else {
+        // Load default WooCommerce template safely
+        wc_get_template( 'archive-product.php', array(), 'do-not-look-in-theme' );
+    }
+
+} else {
+    // WooCommerce not active, fallback message
+    echo '<p>' . esc_html__( 'WooCommerce is not active. Please activate WooCommerce plugin.', 'posterity' ) . '</p>';
+}

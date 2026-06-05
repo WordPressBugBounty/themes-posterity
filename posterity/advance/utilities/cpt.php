@@ -111,6 +111,7 @@ if(!function_exists( 'posterity_cpt_social' )){
  *
  * @return array of all image sizes (poster, brick, thumb)
  */
+if (!function_exists('posterity_get_gallery_item_images')) { 
 function posterity_get_gallery_item_images($item, $collector, $columns, $bricks_max_width, $brick_margin, $brick_proportion = 0){
 	global $posterity_a13;
 
@@ -322,7 +323,7 @@ function posterity_get_gallery_item_images($item, $collector, $columns, $bricks_
 
 	return array($poster, $brick, $thumb);
 }
-
+}
 
 if(!function_exists('posterity_cpt_list_navigation')){
 	/**
@@ -407,6 +408,7 @@ if(!function_exists('posterity_make_media_collection')){
  *
  * @return array
  */
+if (!function_exists('posterity_prepare_gallery_attachments')) { 
 function posterity_prepare_gallery_attachments( $value, $post_id = null ){
 	global $posterity_a13;
 
@@ -506,7 +508,7 @@ function posterity_prepare_gallery_attachments( $value, $post_id = null ){
 
 	return $attachments;
 }
-
+}
 
 
 /**
@@ -514,6 +516,7 @@ function posterity_prepare_gallery_attachments( $value, $post_id = null ){
  *
  * @param array $items external items list
  */
+if (!function_exists('posterity_prepare_external_media')) { 
 function posterity_prepare_external_media(&$items){
 	global $posterity_a13;
 
@@ -566,7 +569,7 @@ function posterity_prepare_external_media(&$items){
 	}
 	unset($item);
 }
-
+}
 
 
 /**
@@ -580,6 +583,7 @@ function posterity_prepare_external_media(&$items){
  *
  * @return string HTML of gallery
  */
+if (!function_exists('posterity_prepare_frontend_gallery_html')) { 
 function posterity_prepare_frontend_gallery_html( $attachments, $order, $id, $args ){
 	if( $order === 'DESC' ){
 		$attachments = array_reverse( $attachments );
@@ -739,7 +743,7 @@ function posterity_prepare_frontend_gallery_html( $attachments, $order, $id, $ar
 
 	return $output;
 }
-
+}
 
 /**
  * Helper to prepare each gallery item to display in front-end
@@ -748,6 +752,7 @@ function posterity_prepare_frontend_gallery_html( $attachments, $order, $id, $ar
  * @param int   $post_id ID of post that items are added to
  * @param array $args gallery arguments
  */
+if (!function_exists('posterity_frontend_gallery_item_html')) { 
 function posterity_frontend_gallery_item_html( $collector, $post_id, $args ){
 	global $posterity_a13;
 	static $id = 0;
@@ -864,6 +869,7 @@ function posterity_frontend_gallery_item_html( $collector, $post_id, $args ){
 	</li>
 <?php
 }
+}
 
 /**
  * Prepares proportion from string
@@ -872,6 +878,7 @@ function posterity_frontend_gallery_item_html( $collector, $post_id, $args ){
  *
  * @return float fraction of width that height has to have
  */
+if (!function_exists('posterity_calculate_height_proportion')) { 
 function posterity_calculate_height_proportion($brick_proportion){
 	$height_proportion = 0;
 	//prepare proportion from string
@@ -899,7 +906,7 @@ function posterity_calculate_height_proportion($brick_proportion){
 
 	return $height_proportion;
 }
-
+}
 /**
  * Prepares filters for media in single album
  *
@@ -907,6 +914,7 @@ function posterity_calculate_height_proportion($brick_proportion){
  *
  * @return array filters that are available for current post
  */
+if (!function_exists('posterity_get_media_filters')) {  
 function posterity_get_media_filters($id = null){
 	static $indexed_filters = array();
 	if(is_null($id)){
@@ -952,6 +960,7 @@ function posterity_get_media_filters($id = null){
 	}
 
 	return $indexed_filters[$id];
+}
 }
 
 if ( ! function_exists( 'posterity_cpt_as_frontpage_title_fix' ) ) {

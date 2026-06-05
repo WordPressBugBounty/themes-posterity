@@ -5,6 +5,7 @@
  * For numeric values
  *
  */
+if ( class_exists( 'WP_Customize_Control' ) ) : 
 class Posterity_A13_Customize_Slider_Control extends WP_Customize_Control {
 
 	/**
@@ -77,3 +78,4 @@ class Posterity_A13_Customize_Slider_Control extends WP_Customize_Control {
 		<?php
 	}
 }
+endif;

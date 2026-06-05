@@ -5,6 +5,7 @@
  * It can be used as radio or checkbox version
  *
  */
+if ( class_exists( 'WP_Customize_Control' ) ) : 
 class Posterity_A13_Customize_Sidebars_Control extends WP_Customize_Control {
 
 	/**
@@ -57,3 +58,4 @@ class Posterity_A13_Customize_Sidebars_Control extends WP_Customize_Control {
 		<?php
 	}
 }
+endif;

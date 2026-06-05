@@ -1,3 +1,19 @@
+= 4.6 =
+*    Fixed: Fatal error ("Call to undefined function posterity_proper_page_template_name()") on the page editor when the Classic Editor plugin is active.
+
+= 4.5 =
+*    Fixed an issue with the positioning of avatars in comments.
+
+= 4.4 =
+*    Fixed new errors found in the PHP 8.1 scan.
+
+= 4.3 =
+*    Fixed function redeclarations and deprecated warnings.
+*    Ensured safe file loading under PHP 8.1.
+
+= 4.2 =
+*    Resolved E_COMPILE_ERROR: Cannot redeclare posterity_get_user_css().
+
 = 4.1 =
 *    Author URL to be rectified.
 

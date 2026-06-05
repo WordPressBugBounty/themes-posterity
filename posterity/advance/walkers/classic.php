@@ -3,6 +3,7 @@
  * Class POSTERITY_menu_walker
  * Used in main menu
  */
+if (!class_exists('POSTERITY_menu_walker')) { 
 class POSTERITY_menu_walker extends Walker_Nav_Menu {
 
 	/**
@@ -169,4 +170,5 @@ class POSTERITY_menu_walker extends Walker_Nav_Menu {
 
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
+}
 }
