@@ -867,7 +867,6 @@ class Posterity_Framework
             'vine'        => array( 'fa fa-vine', 'Vine' ),
             'vkontakte'   => array( 'fa fa-vk', 'VKontakte' ),
             'whatsapp'    => array( 'fa fa-whatsapp', 'Whatsapp' ),
-            'wordpress'   => array( 'fa fa-wordpress', 'WordPress' ),
             'xing'        => array( 'fa fa-xing', 'Xing' ),
             'yahoo'       => array( 'fa fa-yahoo', 'Yahoo' ),
             'yelp'        => array( 'fa fa-yelp', 'Yelp' ),

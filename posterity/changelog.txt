@@ -1,3 +1,6 @@
+= 4.7 =
+*     Compatibility check with WordPress version 7.1. And fixed advance/admin/admin.php deprecated function issue.
+
 = 4.6 =
 *    Fixed: Fatal error ("Call to undefined function posterity_proper_page_template_name()") on the page editor when the Classic Editor plugin is active.
 

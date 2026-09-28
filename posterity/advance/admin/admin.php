@@ -177,23 +177,30 @@ add_filter( 'page_attributes_dropdown_pages_args', 'posterity_check_for_proper_p
  */
 add_action( 'wp_ajax_posterity_disable_ajax_notice', 'posterity_disable_ajax_notice' );
 function posterity_disable_ajax_notice() {
-	if ( ! wp_verify_nonce( $_POST['nonce'], 'ajax_security' ) ) {
-        die ( 'Caught!');
-    }
-	$id = isset( $_POST['notice_id'] )? sanitize_text_field( wp_unslash( $_POST['notice_id'] ) ) : '';
-	$option_name = 'a13_'.POSTERITY_TPL_SLUG.'_ajax_notices';
+	$nonce = isset( $_POST['nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
+	if ( ! wp_verify_nonce( $nonce, 'ajax_security' ) ) {
+		die( 'Caught!' );
+	}
 
-	//get notices
-	$current_notices = get_option($option_name);
-	//update mentioned notice
-	$current_notices[$id] = 0;
+	$id          = isset( $_POST['notice_id'] ) ? sanitize_text_field( wp_unslash( $_POST['notice_id'] ) ) : '';
+	$option_name = 'a13_' . POSTERITY_TPL_SLUG . '_ajax_notices';
 
-	//save
-	update_option($option_name, $current_notices);
+	// get notices (default to an empty array if the option doesn't exist)
+	$current_notices = get_option( $option_name, array() );
+	if ( ! is_array( $current_notices ) ) {
+		$current_notices = array();
+	}
+
+	// update mentioned notice
+	if ( '' !== $id ) {
+		$current_notices[ $id ] = 0;
+	}
+
+	// save
+	update_option( $option_name, $current_notices );
 
 	die(); // this is required to return a proper result
 }
-
 /* rating notice */
 add_action( 'wp_ajax_posterity_rating_notice_action', 'posterity_rating_notice_action' );
 
