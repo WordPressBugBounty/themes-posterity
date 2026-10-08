@@ -3,7 +3,7 @@
 Contributors: sonalsinha21
 Requires PHP:  5.6
 Tested up to: 7.1
-Version: 4.7
+Version: 4.8
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/license-list.html#GNUGPLv3
 Tags:e-commerce, portfolio, blog, two-columns, three-columns, left-sidebar, right-sidebar, grid-layout, translation-ready, sticky-post, post-formats, custom-colors, custom-menu, featured-images, footer-widgets, full-width-template, post-formats, sticky-post, theme-options, threaded-comments, translation-ready, rtl-language-support
@@ -159,6 +159,9 @@ posterity/images/holders/photo_150x100.png
 posterity/images/holders/photo.png
 posterity/images/holders/deleted.png
 posterity/images/holders/title_bar_bg.jpg 
+posterity/images/theme-info/menu-icon.svg
+posterity/images/theme-info/bundle-notice.png
+posterity/images/theme-info/bundle-preview.jpg
 
 [posterity/images/holders/title_bar_bg.jpg is pxhere image https://pxhere.com/en/photo/892149]
 

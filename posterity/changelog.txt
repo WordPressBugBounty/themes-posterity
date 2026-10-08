@@ -1,3 +1,6 @@
+= 4.8 =
+*     Added the Theme Dashboard menu and corrected the author.
+
 = 4.7 =
 *     Compatibility check with WordPress version 7.1. And fixed advance/admin/admin.php deprecated function issue.
 

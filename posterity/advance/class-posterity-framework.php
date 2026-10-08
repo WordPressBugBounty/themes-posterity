@@ -131,6 +131,10 @@ class Posterity_Framework
 			
 			get_template_part('advance/admin/posterityinfo-pages-functions');
 
+            // SKT THEMES WELCOME NOTICE, BUNDLE NOTICE & THEME DASHBOARD (admin.php?page={theme-slug}-info)
+			require_once get_template_directory() . '/advance/admin/theme-welcome.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
+			require_once get_template_directory() . '/advance/admin/theme-info-page.php'; // phpcs:ignore WPThemeReview.CoreFunctionality.FileInclude.FileIncludeFound
+
             //ADD EXTERNAL PLUGINS
             /** @noinspection PhpIncludeInspection */
 			get_template_part('advance/inc/class-tgm-plugin-activation');
